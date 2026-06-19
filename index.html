@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas Colton Lawncare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --green-deep:   #1E3A1E;
+      --green-mid:    #2D5A27;
+      --green-bright: #4A8C3F;
+      --yellow:       #D4A017;
+      --cream:        #F7F4ED;
+      --charcoal:     #1A1A18;
+      --mid-gray:     #6B6B62;
+      --light-gray:   #E8E5DC;
+
+      --display: 'Oswald', sans-serif;
+      --body:    'Source Sans 3', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      background: var(--green-deep);
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--charcoal) !important;
+      padding: 8px 20px;
+      border-radius: 2px;
+    }
+
+    .nav-cta:hover { background: #e0b020; color: var(--charcoal) !important; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 40px 60px;
+    }
+
+    /* Big diagonal stripe — the signature */
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -5%;
+      top: -10%;
+      width: 58%;
+      height: 130%;
+      background: var(--green-mid);
+      transform: skewX(-8deg);
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 3%;
+      top: -10%;
+      width: 6px;
+      height: 130%;
+      background: var(--yellow);
+      transform: skewX(-8deg);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--display);
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--charcoal);
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: #e0b020; transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--yellow); background: rgba(212,160,23,0.08); }
+
+    /* Right panel graphic */
+    .hero-graphic {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .mower-svg {
+      width: clamp(220px, 28vw, 400px);
+      opacity: 0.92;
+      filter: drop-shadow(0 12px 40px rgba(0,0,0,0.5));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* ── TAGLINE BAND ─────────────────────────────────────── */
+    .band {
+      background: var(--yellow);
+      padding: 18px 40px;
+      overflow: hidden;
+    }
+
+    .band-inner {
+      display: flex;
+      gap: 56px;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .band-item {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .band-item::before {
+      content: '✦ ';
+      color: var(--green-deep);
+    }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    #services {
+      padding: 100px 40px;
+      background: var(--cream);
+    }
+
+    .section-label {
+      font-family: var(--display);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--green-deep);
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--charcoal);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s;
+    }
+
+    .service-card:hover { transform: translateY(-4px); }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 4px;
+      width: 0;
+      background: var(--yellow);
+      transition: width 0.35s ease;
+    }
+
+    .service-card:hover::after { width: 100%; }
+
+    .service-icon {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      display: block;
+      line-height: 1;
+    }
+
+    .service-card h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    /* ── WHY US ─────────────────────────────────────────────── */
+    #about {
+      background: var(--green-deep);
+      padding: 100px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text .section-label { color: var(--yellow); }
+
+    .about-text .section-title { color: #fff; margin-bottom: 28px; }
+
+    .about-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .stat-box {
+      background: var(--green-mid);
+      padding: 36px 28px;
+      border-top: 4px solid var(--yellow);
+    }
+
+    .stat-box strong {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 3rem;
+      color: var(--yellow);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-box span {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── PROCESS ─────────────────────────────────────────────── */
+    #process {
+      background: var(--light-gray);
+      padding: 100px 40px;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      margin-top: 60px;
+      border: 2px solid var(--charcoal);
+    }
+
+    .process-step {
+      padding: 44px 32px;
+      border-right: 2px solid var(--charcoal);
+      position: relative;
+    }
+
+    .process-step:last-child { border-right: none; }
+
+    .step-num {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 4rem;
+      color: var(--light-gray);
+      position: absolute;
+      top: 16px; right: 24px;
+      line-height: 1;
+      -webkit-text-stroke: 2px var(--green-bright);
+    }
+
+    .process-step h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step p {
+      font-size: 0.93rem;
+      color: var(--mid-gray);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────────── */
+    #reviews {
+      background: var(--cream);
+      padding: 100px 40px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .review-card {
+      background: #fff;
+      border: 1px solid var(--light-gray);
+      border-left: 5px solid var(--green-bright);
+      padding: 36px 28px;
+    }
+
+    .stars {
+      color: var(--yellow);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .review-card p {
+      font-size: 0.97rem;
+      color: var(--charcoal);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .reviewer {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green-mid);
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────────── */
+    #contact {
+      background: var(--charcoal);
+      padding: 100px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info .section-label { color: var(--yellow); }
+
+    .contact-info .section-title { color: #fff; margin-bottom: 32px; }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-detail-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 4px;
+    }
+
+    .contact-detail-text span {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      padding: 14px 18px;
+      color: #fff;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--yellow);
+    }
+
+    .contact-form select option { background: var(--charcoal); }
+
+    .contact-form textarea { min-height: 130px; resize: vertical; }
+
+    .submit-btn {
+      background: var(--yellow);
+      color: var(--charcoal);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .submit-btn:hover { background: #e0b020; transform: translateY(-2px); }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--green-deep);
+      border-top: 4px solid var(--yellow);
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-logo span {
+      color: var(--yellow);
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--yellow); }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 820px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+
+      .hero { padding: 100px 24px 60px; }
+      .hero-graphic { display: none; }
+      .hero::before { width: 100%; right: 0; opacity: 0.15; }
+
+      #about { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+      #contact { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; }
+
+      #services, #process, #reviews { padding: 60px 24px; }
+
+      .process-steps { border: none; gap: 2px; }
+      .process-step { border: 2px solid var(--charcoal); border-right: 2px solid var(--charcoal); }
+
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mower-svg { animation: none; }
+      .band-inner { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      Lucas Colton
+      <span>Lawncare</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Serving Your Neighborhood — Rain or Shine</p>
+      <h1>
+        Your Lawn,
+        <em>Done Right.</em>
+      </h1>
+      <p class="hero-sub">
+        Grass cutting, weed whacking, leaf pickup, junk haul-off, and full cleanup — Lucas Colton handles it all so you don't have to.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-outline">See Services</a>
+      </div>
+    </div>
+
+    <!-- Inline SVG lawn mower graphic -->
+    <div class="hero-graphic">
+      <svg class="mower-svg" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Grass strip -->
+        <rect x="0" y="210" width="340" height="50" fill="#2D5A27" rx="0"/>
+        <rect x="0" y="198" width="340" height="14" fill="#4A8C3F" rx="0"/>
+        <!-- Grass blades -->
+        <g fill="#4A8C3F" opacity="0.7">
+          <path d="M20 198 Q22 180 24 198"/>
+          <path d="M48 198 Q51 172 54 198"/>
+          <path d="M80 198 Q83 185 86 198"/>
+          <path d="M115 198 Q118 168 121 198"/>
+          <path d="M200 198 Q203 175 206 198"/>
+          <path d="M240 198 Q244 182 248 198"/>
+          <path d="M280 198 Q284 170 288 198"/>
+          <path d="M305 198 Q308 183 311 198"/>
+        </g>
+        <!-- Mower deck -->
+        <rect x="70" y="150" width="200" height="50" rx="10" fill="#1E3A1E"/>
+        <rect x="80" y="160" width="180" height="30" rx="7" fill="#2D5A27"/>
+        <!-- Yellow stripe on deck -->
+        <rect x="80" y="172" width="180" height="6" rx="2" fill="#D4A017"/>
+        <!-- Left wheel -->
+        <circle cx="100" cy="200" r="24" fill="#1A1A18"/>
+        <circle cx="100" cy="200" r="16" fill="#333"/>
+        <circle cx="100" cy="200" r="6" fill="#D4A017"/>
+        <!-- Right wheel -->
+        <circle cx="240" cy="200" r="24" fill="#1A1A18"/>
+        <circle cx="240" cy="200" r="16" fill="#333"/>
+        <circle cx="240" cy="200" r="6" fill="#D4A017"/>
+        <!-- Handle bar -->
+        <line x1="200" y1="155" x2="270" y2="80" stroke="#4A8C3F" stroke-width="8" stroke-linecap="round"/>
+        <line x1="220" y1="148" x2="290" y2="73" stroke="#4A8C3F" stroke-width="8" stroke-linecap="round"/>
+        <line x1="270" y1="80" x2="290" y2="73" stroke="#D4A017" stroke-width="8" stroke-linecap="round"/>
+        <!-- Engine block -->
+        <rect x="130" y="128" width="80" height="28" rx="6" fill="#D4A017"/>
+        <rect x="150" y="120" width="12" height="14" rx="3" fill="#1A1A18"/>
+        <!-- Exhaust puff -->
+        <circle cx="158" cy="108" r="7" fill="white" opacity="0.18"/>
+        <circle cx="166" cy="95" r="5" fill="white" opacity="0.12"/>
+        <circle cx="172" cy="84" r="3.5" fill="white" opacity="0.08"/>
+        <!-- Clipping discharge -->
+        <path d="M70 175 Q40 190 20 205" stroke="#4A8C3F" stroke-width="3" opacity="0.5" stroke-dasharray="4 3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- TICKER BAND -->
+  <div class="band" aria-hidden="true">
+    <div class="band-inner">
+      <span class="band-item">Grass Cutting</span>
+      <span class="band-item">Weed Whacking</span>
+      <span class="band-item">Leaf Pickup</span>
+      <span class="band-item">Trash Hauling</span>
+      <span class="band-item">Trash Can Cleaning</span>
+      <span class="band-item">Yard Cleanup</span>
+      <span class="band-item">Edging</span>
+      <span class="band-item">Free Estimates</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="band-item">Grass Cutting</span>
+      <span class="band-item">Weed Whacking</span>
+      <span class="band-item">Leaf Pickup</span>
+      <span class="band-item">Trash Hauling</span>
+      <span class="band-item">Trash Can Cleaning</span>
+      <span class="band-item">Yard Cleanup</span>
+      <span class="band-item">Edging</span>
+      <span class="band-item">Free Estimates</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Our Services</h2>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-icon">🌿</span>
+        <h3>Grass Cutting</h3>
+        <p>Clean, even cuts every time. We trim to the right height for your grass type and leave your lawn looking sharp — no missed strips, no scalping.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">⚡</span>
+        <h3>Weed Whacking</h3>
+        <p>We get into every tight spot — fence lines, tree bases, curb edges — anywhere the mower can't reach. Your borders will be crisp and clean.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🍂</span>
+        <h3>Leaf Pickup</h3>
+        <p>Fall messes don't stand a chance. We rake, blow, and haul away leaves so your yard is clear and your grass can breathe heading into winter.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🗑️</span>
+        <h3>Trash & Junk Hauling</h3>
+        <p>Got junk piling up in the yard or by the curb? We load it and take it away. Old furniture, yard waste, debris — gone same day.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✂️</span>
+        <h3>Edging</h3>
+        <p>A sharp edge along your driveway or sidewalk makes the whole yard pop. We finish every job with clean lines that frame the work.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🧹</span>
+        <h3>Full Yard Cleanup</h3>
+        <p>Moving in, moving out, or just need a fresh start? Our full cleanup service takes your yard from overgrown and neglected to completely dialed in.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🪣</span>
+        <h3>Trash Can Cleaning</h3>
+        <p>Stinky, grimy trash cans are a problem nobody wants to deal with — so we handle it for you. We scrub, sanitize, and deodorize your bins inside and out so they stop smelling and stay fresh. Add it to any service visit or book it on its own.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT / STATS -->
+  <section id="about">
+    <div class="about-text reveal">
+      <p class="section-label">Why Lucas Colton</p>
+      <h2 class="section-title">Local, Reliable, Thorough.</h2>
+      <p>We're not a faceless franchise — we're your neighbors. Lucas Colton Lawncare was built on word of mouth because we show up on time, do the job right, and leave no mess behind.</p>
+      <p>Every yard gets the same care, whether it's a quick weekly cut or a full seasonal haul. If something doesn't look right, we fix it before we leave.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-box">
+        <strong>500+</strong>
+        <span>Yards Serviced</span>
+      </div>
+      <div class="stat-box">
+        <strong>5★</strong>
+        <span>Avg. Rating</span>
+      </div>
+      <div class="stat-box">
+        <strong>Same</strong>
+        <span>Day Availability</span>
+      </div>
+      <div class="stat-box">
+        <strong>100%</strong>
+        <span>Satisfaction Guarantee</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <p class="section-label reveal">Simple as That</p>
+    <h2 class="section-title reveal">How It Works</h2>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Get a Quote</h3>
+        <p>Fill out our quick form or give us a call. We'll get back to you fast with a fair, no-pressure estimate.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Pick Your Day</h3>
+        <p>We work around your schedule. Regular service or one-time visits — you choose what works for you.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>We Show Up</h3>
+        <p>On time, every time. We bring our own equipment and handle every detail from start to finish.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="step-num" aria-hidden="true">4</span>
+        <h3>Done Right</h3>
+        <p>We don't leave until the job looks exactly how it should. Your lawn, your standards — we meet them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <p class="section-label reveal">What Customers Say</p>
+    <h2 class="section-title reveal">Reviews</h2>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Lucas Colton showed up the same day I called and knocked out a yard that had been out of control for weeks. Looked incredible when they were done."</p>
+        <div class="reviewer">— Mike D., Local Homeowner</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Reliable, affordable, and they actually cleaned up after themselves. I've tried three other services and none of them compare."</p>
+        <div class="reviewer">— Sandra P., Regular Customer</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Got the leaf cleanup done before the first snow and my lawn looked better than it did all summer. These guys know what they're doing."</p>
+        <div class="reviewer">— Tom R., Seasonal Customer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-info">
+      <p class="section-label">Let's Talk</p>
+      <h2 class="section-title">Get a Free Estimate</h2>
+
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📞</span>
+        <div class="contact-detail-text">
+          <strong>Call or Text ((please state that you are calling/texting for lawn care)</strong>
+          <span>412-953-1428</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📧</span>
+        <div class="contact-detail-text">
+          <strong>Email (please state that you are emailing for lawn care)</strong>
+          <span>colton0328@icloud.com</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📍</span>
+        <div class="contact-detail-text">
+          <strong>Service Area</strong>
+          <span>Your City & Surrounding Areas</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <span class="contact-detail-icon">🕐</span>
+        <div class="contact-detail-text">
+          <strong>Hours</strong>
+          <span>Mon–Sat, 7 AM – 7 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text" placeholder="First Name" required />
+        <input type="text" placeholder="Last Name" required />
+      </div>
+      <input type="tel" placeholder="Phone Number" />
+      <input type="email" placeholder="Email Address" required />
+      <select>
+        <option value="" disabled selected>Service Needed</option>
+        <option>Grass Cutting</option>
+        <option>Weed Whacking</option>
+        <option>Leaf Pickup</option>
+        <option>Trash & Junk Hauling</option>
+        <option>Trash Can Cleaning</option>
+        <option>Edging</option>
+        <option>Full Yard Cleanup</option>
+        <option>Other / Multiple Services</option>
+      </select>
+      <textarea placeholder="Tell us a bit about your yard or what you need done..."></textarea>
+      <button type="submit" class="submit-btn">Send My Request →</button>
+      <p id="form-msg" style="color:#D4A017;font-size:0.9rem;display:none;">✔ Thanks! We'll be in touch shortly.</p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Lucas <span>Colton</span> Lawncare</div>
+    <p>© 2025 Lucas Colton Lawncare. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 80 * (Array.from(entry.target.parentElement?.children || []).indexOf(entry.target)));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.style.display = 'block';
+      e.target.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+    }
+  </script>
+</body>
+</html>
