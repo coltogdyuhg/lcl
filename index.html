@@ -1001,6 +1001,7 @@
       </div>
       <input id="f-phone" type="tel" placeholder="Phone Number" />
       <input id="f-email" type="email" placeholder="Email Address" required />
+      <input id="f-address" type="text" placeholder="Service Address (e.g. 123 Main St, Jefferson Hills, PA)" required />
 
       <p style="font-family:var(--display);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">Select Services (pick all that apply)</p>
       <div class="service-checkboxes">
@@ -1099,10 +1100,10 @@
     // 4. Account → API Keys → copy your Public Key
     // 5. Paste all three values below:
 
-    const EMAILJS_PUBLIC_KEY      = 'JLWXnF7REgp2s5gpv';    // ← paste here
-    const EMAILJS_SERVICE_ID      = 'service_k8wz8aq';    // ← paste here
-    const EMAILJS_TEMPLATE_OWNER  = 'template_lfflyx5'; // ← template that emails YOU
-    const EMAILJS_TEMPLATE_CUSTOMER = 'template_88ysueh'; // ← template that emails CUSTOMER
+    const EMAILJS_PUBLIC_KEY      = 'JLWXnF7REgp2s5gpv';
+    const EMAILJS_SERVICE_ID      = 'service_k8wz8aq';
+    const EMAILJS_TEMPLATE_OWNER  = 'template_lfflyx5';
+    const EMAILJS_TEMPLATE_CUSTOMER = 'template_88ysueh';
 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -1189,6 +1190,7 @@
       const last     = document.getElementById('f-last').value.trim();
       const phone    = document.getElementById('f-phone').value.trim() || 'Not provided';
       const email    = document.getElementById('f-email').value.trim();
+      const address  = document.getElementById('f-address').value.trim() || 'Not provided';
       const notes    = document.getElementById('f-notes').value.trim() || 'None';
       const dateRaw  = document.getElementById('f-date').value;
       const date     = formatDate(dateRaw);
@@ -1200,6 +1202,7 @@
         customer_name:  `${first} ${last}`,
         customer_email: email,
         customer_phone: phone,
+        address:        address,
         service_date:   date,
         services:       services,
         notes:          notes,
