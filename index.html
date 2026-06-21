@@ -632,6 +632,55 @@
 
     .footer-links a:hover { color: var(--yellow); }
 
+    /* ── SERVICE CHECKBOXES ──────────────────────────────────── */
+    .service-checkboxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .svc-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      padding: 11px 14px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+
+    .svc-check:hover {
+      border-color: var(--yellow);
+      background: rgba(212,160,23,0.08);
+    }
+
+    .svc-check input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      accent-color: var(--yellow);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .svc-check:has(input:checked) {
+      border-color: var(--yellow);
+      background: rgba(212,160,23,0.12);
+      color: #fff;
+    }
+
+    @media (max-width: 480px) {
+      .service-checkboxes { grid-template-columns: 1fr; }
+    }
+
     /* ── SCROLL REVEAL ───────────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -832,7 +881,7 @@
       <p class="section-label">Why Lucas Colton</p>
       <h2 class="section-title">Local, Reliable, Thorough.</h2>
       <p>We're not a faceless franchise — we're your neighbors. Lucas Colton Lawncare was built on word of mouth because we show up on time, do the job right, and leave no mess behind.</p>
-      <p>Every yard gets the same care, whether it's a quick weekly cut or a full seasonal haul. If something doesn't look right, we fix it before we leave.</p>
+      <p>Every yard gets the same care whether it's a quick weekly cut or a full seasonal haul. If something doesn't look right, we fix it before we leave.</p>
     </div>
     <div class="stats-grid reveal">
       <div class="stat-box">
@@ -914,15 +963,15 @@
       <div class="contact-detail">
         <span class="contact-detail-icon">📞</span>
         <div class="contact-detail-text">
-          <strong>Call or Text ((please state that you are calling/texting for lawn care)</strong>
-          <span>412-953-1428</span>
+          <strong>Call or Text</strong>
+          <span>(412) 953-1428</span>
         </div>
       </div>
 
       <div class="contact-detail">
         <span class="contact-detail-icon">📧</span>
         <div class="contact-detail-text">
-          <strong>Email (please state that you are emailing for lawn care)</strong>
+          <strong>Email</strong>
           <span>colton0328@icloud.com</span>
         </div>
       </div>
@@ -931,7 +980,7 @@
         <span class="contact-detail-icon">📍</span>
         <div class="contact-detail-text">
           <strong>Service Area</strong>
-          <span>Your City & Surrounding Areas</span>
+          <span>Jefferson Hills &amp; Pleasant Hills, PA</span>
         </div>
       </div>
 
@@ -944,28 +993,59 @@
       </div>
     </div>
 
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+    <!-- STEP 1: The Form -->
+    <div id="form-step" class="contact-form reveal">
       <div class="form-row">
-        <input type="text" placeholder="First Name" required />
-        <input type="text" placeholder="Last Name" required />
+        <input id="f-first" type="text" placeholder="First Name" required />
+        <input id="f-last" type="text" placeholder="Last Name" required />
       </div>
-      <input type="tel" placeholder="Phone Number" />
-      <input type="email" placeholder="Email Address" required />
-      <select>
-        <option value="" disabled selected>Service Needed</option>
-        <option>Grass Cutting</option>
-        <option>Weed Whacking</option>
-        <option>Leaf Pickup</option>
-        <option>Trash & Junk Hauling</option>
-        <option>Trash Can Cleaning</option>
-        <option>Edging</option>
-        <option>Full Yard Cleanup</option>
-        <option>Other / Multiple Services</option>
-      </select>
-      <textarea placeholder="Tell us a bit about your yard or what you need done..."></textarea>
-      <button type="submit" class="submit-btn">Send My Request →</button>
-      <p id="form-msg" style="color:#D4A017;font-size:0.9rem;display:none;">✔ Thanks! We'll be in touch shortly.</p>
-    </form>
+      <input id="f-phone" type="tel" placeholder="Phone Number" />
+      <input id="f-email" type="email" placeholder="Email Address" required />
+
+      <p style="font-family:var(--display);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">Select Services (pick all that apply)</p>
+      <div class="service-checkboxes">
+        <label class="svc-check"><input type="checkbox" value="Grass Cutting" /> Grass Cutting</label>
+        <label class="svc-check"><input type="checkbox" value="Weed Whacking" /> Weed Whacking</label>
+        <label class="svc-check"><input type="checkbox" value="Leaf Pickup" /> Leaf Pickup</label>
+        <label class="svc-check"><input type="checkbox" value="Trash & Junk Hauling" /> Trash &amp; Junk Hauling</label>
+        <label class="svc-check"><input type="checkbox" value="Trash Can Cleaning" /> Trash Can Cleaning</label>
+        <label class="svc-check"><input type="checkbox" value="Edging" /> Edging</label>
+        <label class="svc-check"><input type="checkbox" value="Full Yard Cleanup" /> Full Yard Cleanup</label>
+        <label class="svc-check"><input type="checkbox" value="Other" /> Other</label>
+      </div>
+
+      <textarea id="f-notes" placeholder="Tell us a bit about your yard or what you need done..."></textarea>
+
+      <div>
+        <p style="font-family:var(--display);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">Preferred Service Date</p>
+        <input id="f-date" type="date" style="color-scheme:dark;" />
+      </div>
+      <p id="form-err" style="color:#ff6b6b;font-size:0.88rem;display:none;">Please fill in all required fields and select at least one service.</p>
+      <button class="submit-btn" onclick="showConfirmStep()">Next: Confirm Request →</button>
+    </div>
+
+    <!-- STEP 2: Confirmation Code -->
+    <div id="confirm-step" class="contact-form" style="display:none;">
+      <div style="text-align:center;padding:16px 0 24px;">
+        <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;margin-bottom:20px;">To confirm your request, type the code below and hit Send.</p>
+        <div id="confirm-code-display" style="font-family:var(--display);font-size:3.5rem;font-weight:700;color:var(--yellow);letter-spacing:0.18em;margin-bottom:8px;"></div>
+        <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-bottom:28px;">Type this code exactly to confirm</p>
+      </div>
+      <input id="code-input" type="text" placeholder="Enter code here" maxlength="6" style="text-align:center;font-size:1.4rem;letter-spacing:0.2em;font-family:var(--display);" oninput="this.value=this.value.toUpperCase()" />
+      <p id="code-err" style="color:#ff6b6b;font-size:0.88rem;display:none;text-align:center;">That code doesn't match — try again.</p>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="submit-btn" style="background:rgba(255,255,255,0.1);color:#fff;flex:1;" onclick="backToForm()">← Back</button>
+        <button class="submit-btn" style="flex:2;" onclick="submitRequest()">Send My Request →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Success -->
+    <div id="success-step" class="contact-form" style="display:none;text-align:center;padding:40px 20px;">
+      <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+      <h3 style="font-family:var(--display);font-size:1.8rem;color:var(--yellow);text-transform:uppercase;margin-bottom:12px;">Request Sent!</h3>
+      <p style="color:rgba(255,255,255,0.7);font-size:1rem;line-height:1.6;max-width:340px;margin:0 auto;">We got your quote request and will be in touch shortly. Thanks for choosing Lucas Colton Lawncare!</p>
+    </div>
+
   </section>
 
   <!-- FOOTER -->
@@ -979,28 +1059,169 @@
     </ul>
   </footer>
 
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
-    // Scroll reveal
+    // ── EmailJS config ────────────────────────────────────────────────────────
+    // SETUP (5 min, free at emailjs.com):
+    //
+    // 1. Create a free account at https://www.emailjs.com
+    // 2. Add an Email Service → connect your iCloud/Gmail → copy the Service ID
+    //
+    // 3. Create TWO Email Templates:
+    //
+    //    TEMPLATE A — "New Quote Request" (sends TO YOU):
+    //    Subject: New Quote Request from {{customer_name}}
+    //    Body:
+    //      📋 NEW QUOTE REQUEST — Lucas Colton Lawncare
+    //      Name:     {{customer_name}}
+    //      Phone:    {{customer_phone}}
+    //      Email:    {{customer_email}}
+    //      Date:     {{service_date}}
+    //      Services: {{services}}
+    //      Notes:    {{notes}}
+    //
+    //    TEMPLATE B — "Order Confirmation" (sends TO CUSTOMER):
+    //    To Email field: {{customer_email}}
+    //    Subject: Your Quote Request — Lucas Colton Lawncare
+    //    Body:
+    //      Hi {{customer_name}},
+    //      Thanks for reaching out! We received your quote request and will be in touch soon.
+    //      Here's what you requested:
+    //        Services: {{services}}
+    //        Preferred Date: {{service_date}}
+    //        Notes: {{notes}}
+    //      Questions? Call or text us: (412) 953-1428
+    //      Or visit our site: {{site_url}}
+    //      — Lucas Colton Lawncare
+    //
+    // 4. Account → API Keys → copy your Public Key
+    // 5. Paste all three values below:
+
+    const EMAILJS_PUBLIC_KEY      = 'JLWXnF7REgp2s5gpv';    // ← paste here
+    const EMAILJS_SERVICE_ID      = 'service_k8wz8aq';    // ← paste here
+    const EMAILJS_TEMPLATE_OWNER  = 'template_lfflyx5'; // ← template that emails YOU
+    const EMAILJS_TEMPLATE_CUSTOMER = 'template_88ysueh'; // ← template that emails CUSTOMER
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    // ── Scroll reveal ─────────────────────────────────────────────────────────
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 80 * (Array.from(entry.target.parentElement?.children || []).indexOf(entry.target)));
+          const siblings = Array.from(entry.target.parentElement?.children || []);
+          setTimeout(() => entry.target.classList.add('visible'), 80 * siblings.indexOf(entry.target));
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
-
     reveals.forEach(el => observer.observe(el));
 
-    // Form submit
-    function handleSubmit(e) {
-      e.preventDefault();
-      const msg = document.getElementById('form-msg');
-      msg.style.display = 'block';
-      e.target.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+    // Set date picker min to today
+    document.addEventListener('DOMContentLoaded', () => {
+      const d = document.getElementById('f-date');
+      if (d) d.min = new Date().toISOString().split('T')[0];
+    });
+
+    // ── Confirmation code generator ───────────────────────────────────────────
+    let generatedCode = '';
+
+    function generateCode() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = '';
+      for (let i = 0; i < 5; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      return code;
+    }
+
+    // ── Step 1 → Step 2 ──────────────────────────────────────────────────────
+    function showConfirmStep() {
+      const first   = document.getElementById('f-first').value.trim();
+      const last    = document.getElementById('f-last').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const checked = [...document.querySelectorAll('.svc-check input:checked')];
+      const errEl   = document.getElementById('form-err');
+
+      if (!first || !last || !email || checked.length === 0) {
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
+
+      generatedCode = generateCode();
+      document.getElementById('confirm-code-display').textContent = generatedCode;
+      document.getElementById('code-input').value = '';
+      document.getElementById('code-err').style.display = 'none';
+
+      document.getElementById('form-step').style.display    = 'none';
+      document.getElementById('confirm-step').style.display = 'flex';
+      document.getElementById('confirm-step').style.flexDirection = 'column';
+      document.getElementById('confirm-step').style.gap = '16px';
+    }
+
+    // ── Step 2 → Step 1 ──────────────────────────────────────────────────────
+    function backToForm() {
+      document.getElementById('confirm-step').style.display = 'none';
+      document.getElementById('form-step').style.display    = 'flex';
+    }
+
+    // ── Format date nicely ────────────────────────────────────────────────────
+    function formatDate(val) {
+      if (!val) return 'Not specified';
+      const [y, m, d] = val.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[+m-1]} ${+d}, ${y}`;
+    }
+
+    // ── Step 2 → Submit ───────────────────────────────────────────────────────
+    function submitRequest() {
+      const entered = document.getElementById('code-input').value.trim().toUpperCase();
+      const codeErr = document.getElementById('code-err');
+
+      if (entered !== generatedCode) {
+        codeErr.style.display = 'block';
+        return;
+      }
+      codeErr.style.display = 'none';
+
+      const first    = document.getElementById('f-first').value.trim();
+      const last     = document.getElementById('f-last').value.trim();
+      const phone    = document.getElementById('f-phone').value.trim() || 'Not provided';
+      const email    = document.getElementById('f-email').value.trim();
+      const notes    = document.getElementById('f-notes').value.trim() || 'None';
+      const dateRaw  = document.getElementById('f-date').value;
+      const date     = formatDate(dateRaw);
+      const services = [...document.querySelectorAll('.svc-check input:checked')]
+                         .map(cb => cb.value).join(', ');
+      const siteUrl  = window.location.href.split('#')[0];
+
+      const sharedParams = {
+        customer_name:  `${first} ${last}`,
+        customer_email: email,
+        customer_phone: phone,
+        service_date:   date,
+        services:       services,
+        notes:          notes,
+        site_url:       siteUrl
+      };
+
+      // Send email to owner (you)
+      const sendOwner = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OWNER, {
+        ...sharedParams,
+        to_email: 'colton0328@icloud.com'
+      });
+
+      // Send confirmation email to customer
+      const sendCustomer = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CUSTOMER, {
+        ...sharedParams,
+        to_email: email
+      });
+
+      Promise.allSettled([sendOwner, sendCustomer]).then(() => {
+        document.getElementById('confirm-step').style.display = 'none';
+        document.getElementById('success-step').style.display = 'block';
+      });
     }
   </script>
 </body>
